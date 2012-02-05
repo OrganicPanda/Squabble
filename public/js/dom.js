@@ -1,0 +1,27 @@
+// Some DOM helper functions
+squabble.dom = (function() { 
+	
+	// Easy access
+	var $ = Sizzle;
+	
+	// Does element have classname?
+	function hasClass(el, clsName) { 
+		var regex = new RegExp("(^|\\s)" + clsName + "(\\s|$)"); 
+		return regex.test(el.className); 
+	} 
+	
+	// Add classname to element
+	function addClass(el, clsName) { 
+		if (!hasClass(el, clsName)) { el.className += " " + clsName; } 
+	} 
+	
+	// Remove classname from element, if it exists 
+	function removeClass(el, clsName) { 
+		var regex = new RegExp("(^|\\s)" + clsName + "(\\s|$)"); 
+		el.className = el.className.replace(regex, " "); 
+	} 
+	
+	// Expose public methods
+	return { $ : $, hasClass : hasClass, addClass : addClass, removeClass : removeClass }; 
+	
+})();

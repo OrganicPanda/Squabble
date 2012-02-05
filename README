@@ -1,1 +1,21 @@
 This is Squabble
+
+Todo:
+
+Main game components:
+- player
+- board
+- tile
+- wordlist
+
+Screens:
+- splash
+- identify/register/create player 
+- client options
+- game options
+- game
+- highscore
+
+Things to think about:
+- custom boards
+- custom wordlists
