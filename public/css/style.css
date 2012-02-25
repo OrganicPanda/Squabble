@@ -8,44 +8,16 @@
 
 /* Game styles */
 	
-	html, body { height: 100%; background-color: red; }
+	html, body, #game, #screens, #screens .screen { width: 100%; height: 100%; }
+	html, body, #game, #screens, #screens .screen, #bench, #tools, #board, #board .row, #board .position { overflow: hidden; }
 
 	#game {
-		position: relative; /* needed for footer positioning */
+		position: relative;
 		background: green;
-
-		height: auto !important; /* real browsers */
-		height: 100%; /* IE6 */
-
-		min-height: 100%; /* real browsers */
 	}
 	
-	#main-header, #screens, #main-footer { overflow: hidden; }
-	#main-header { background-color: yellow; height: 32px; }
-	#main-header h1 { font-size: 1em; margin: 0; }
-
-	#screens {
-		position: relative; /* Needed to position each screen */
-		padding: 0 0 32px 0; /* Equal to the height of the footer */
-		width: 100%;
-		height: 400px;
-		background-color: purple;
-	}
-
-	#main-footer {
-		position: absolute;
-		width: 100%;
-		height: 32px;
-		bottom: 0;
-		background: blue;
-	}
-
-	#game {
-		/*position: relative;
-		width: 320px;
-		height: 480px;
-		background-color: #cecece;*/
-	}
+	@media only screen and (min-width: 238px) { #game { width: 238px; height: 238px; } }
+	@media only screen and (min-width: 476px) { #game { width: 476px; height: 476px; } }
 
 	/* Helpers */
 	
@@ -53,10 +25,13 @@
 
 	/* Screens */
 	
+		#screens {
+			position: relative;
+			background-color: purple;
+		}
+	
 		#screens .screen { 
 			position: absolute;
-			width: 100%;
-			height: 100%;
 			display: none;
 			z-index : 10;
 		}
@@ -65,14 +40,24 @@
 			display: block;
 		}
 	
-		/* Game screen */
+		/* Board screen */
 		
-			/* (100 - ((15 * 5.5) + (14 * 1))) / 2 = 1.75 */
-			/* width = 5.5 margin = 1 */
-			#game-screen { padding: 1px 0 1px 0; }
-			.row { height: 16px; margin-bottom: 1px; clear: both; }
-			.position { 
-				width: 16px; height: 100%; margin-right: 1px; float: left;
+			#bench, #tools, #board {
+				position: absolute;
+			}
+			
+			#bench { bottom: 0.42%; left: 0.42%; width: 99.16%; height: 10.92%; background-color: red; }
+			#tools { top: 0.42%; right: 0.42%; width: 10.92%; height: 87.82%; background-color: red; }
+			#board { top: 0.42%; left: 0.42%; width: 87.82%; height: 87.82%; background-color: red; }			
+		
+			/* Clearfix the rows */
+			#board .row:before, #board .row:after { content: ""; display: table; }
+			#board .row:after { clear: both; }
+			#board .row { *zoom: 1; }
+			#board .row { margin-bottom: 0.48%; height: 6.22%; }
+			#board .row:last-child { background-color: rgba(145,168,12,0.5); margin-bottom: 0; }
+			#board .position { 
+				width: 6.22%; height: 100%; margin-right: 0.48%; float: left;
 				background: #f0b7a1;
 				background: -moz-radial-gradient(center, ellipse cover,  #f0b7a1 0%, #8c3310 50%, #752201 51%, #bf6e4e 100%);
 				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f0b7a1), color-stop(50%,#8c3310), color-stop(51%,#752201), color-stop(100%,#bf6e4e));
@@ -82,6 +67,5 @@
 				background: radial-gradient(center, ellipse cover,  #f0b7a1 0%,#8c3310 50%,#752201 51%,#bf6e4e 100%);
 				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 );
 			}
-			.position:first-child { margin-left: 1px; }
-			.position:last-child { background: pink; margin-right: 1px; }
+			#board .position:last-child { background: pink; margin-right: 0; }
 

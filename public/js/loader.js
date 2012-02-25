@@ -11,7 +11,7 @@ window.addEventListener("load", function() {
 			console.log("All files loaded!");
 			
 			//squabble.game.showScreen("splash-screen");
-			squabble.game.showScreen("game-screen");
+			squabble.game.showScreen("board-screen");
 			
 		}
 	
