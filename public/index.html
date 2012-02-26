@@ -9,7 +9,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="description" content="A HTML game based on a popular tile-based word game" />
 		
-		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		<!--<meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+		<!--<meta name="viewport" content="initial-scale=0.5, user-scalable=no" />-->
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		
@@ -31,21 +32,26 @@
 	</head>
 	<body>
 		
-		<div id="game" role="main">
+		<div id="debug">
+			<p id="media-query">Res: </p>
+			<p id="media-query-cell-size">Cell Size: </p>
+		</div>
+		
+			<div id="game" role="main">
 
 			<div id="screens">
 				<div id="splash-screen" class="screen">
-				
+			
 					<h1>Squabble</h1>
-				
+			
 					<p>Welcome to Squabble!<p>
-					
-					<p class="button">Continue</p>
 				
+					<p class="button">Continue</p>
+			
 				</div>
 				<div id="menu-screen" class="screen"></div>
 				<div id="board-screen" class="screen">
-					
+				
 					<div id="bench">
 
 						<p>bench</p>
@@ -57,27 +63,27 @@
 						<p>tools</p>
 
 					</div>
-					
-					<div id="board">
-					
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
-						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
 				
+					<div id="board">
+				
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+						<div class="row"><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div><div class="position"></div></div>
+			
 					</div>
-					
+				
 				</div>
 				<div id="score-screen" class="screen"></div>
 			</div>
