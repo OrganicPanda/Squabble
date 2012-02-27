@@ -21,7 +21,21 @@ squabble.dom = (function() {
 		el.className = el.className.replace(regex, " "); 
 	} 
 	
+	// Bind an element event to a handler function	
+	function bind(element, event, handler) { 
+		if (typeof element == "string") { 
+			element = $(element)[0];
+		} 
+		element.addEventListener(event, handler, false);
+	}
+	
 	// Expose public methods
-	return { $ : $, hasClass : hasClass, addClass : addClass, removeClass : removeClass }; 
+	return { 
+		$ : $, 
+		hasClass : hasClass, 
+		addClass : addClass, 
+		removeClass : removeClass,
+		bind : bind
+	}; 
 	
 })();

@@ -1,5 +1,9 @@
-var squabble = {};
+// Set up the game namespace
+var squabble = {
+	screens : {}
+};
 
+// Start load our game scripts when the page is finished doing it's thing
 window.addEventListener("load", function() { 
 
 	Modernizr.load([{ 
@@ -7,11 +11,11 @@ window.addEventListener("load", function() {
 		// Dynamically load game scripts 
 		load : ["js/lib/sizzle-github.js", "js/dom.js", "js/game.js"], 
 		
-		complete : function() { 
-			console.log("All files loaded!");
+		// Once they're loaded
+		complete : function() {
 			
-			//squabble.game.showScreen("splash-screen");
-			squabble.game.showScreen("board-screen");
+			// Show the start screen
+			squabble.game.showScreen("splash-screen");
 			
 		}
 	

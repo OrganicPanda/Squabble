@@ -16,12 +16,17 @@ squabble.game = (function() {
 			dom.removeClass(screen, "active"); 
 		} 
 		
+		// Setup the screen
+		squabble.screens[screenId].run();
+		
 		// Set the new screen as 'active'
 		dom.addClass(screen, "active");
 	
 	} 
 	
 	// Expose public methods 
-	return { showScreen : showScreen }; 
+	return { 
+		showScreen : showScreen
+	}; 
 	
 })();
