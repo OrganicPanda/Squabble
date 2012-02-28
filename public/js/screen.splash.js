@@ -1,4 +1,4 @@
-// Some DOM helper functions
+// Splash screen code
 squabble.screens["splash-screen"] = (function() { 
 	
 	// Easy access
@@ -14,7 +14,7 @@ squabble.screens["splash-screen"] = (function() {
 		dom.bind("#splash-go-menu", "click", function() {
 		
 			// Show the main menu
-			squabble.game.showScreen("splash-screen");
+			squabble.game.showScreen("menu-screen");
 		
 		});
 	

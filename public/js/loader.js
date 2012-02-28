@@ -9,7 +9,15 @@ window.addEventListener("load", function() {
 	Modernizr.load([{ 
 
 		// Dynamically load game scripts 
-		load : ["js/lib/sizzle-github.js", "js/dom.js", "js/game.js"], 
+		load : [
+			"js/lib/sizzle-github.js",
+			"js/dom.js", 
+			"js/screen.game.js", 
+			"js/screen.menu.js", 
+			"js/screen.score.js",
+			"js/screen.splash.js",   
+			"js/game.js"
+		], 
 		
 		// Once they're loaded
 		complete : function() {

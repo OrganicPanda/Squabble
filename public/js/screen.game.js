@@ -1,17 +1,17 @@
-// Score screen code
-squabble.screens["score-screen"] = (function() { 
+// Game screen code
+squabble.screens["game-screen"] = (function() { 
 	
 	// Easy access
 	var game = squabble.game;
 	var dom = squabble.dom;
-	var id = "score-screen";
+	var id = "game-screen";
 	var firstRun = true;
 	
 	// First load setup
 	function setup() {
 	
 		// Wire up the buttons
-		dom.bind("#score-go-menu", "click", function() {
+		dom.bind("#game-go-menu", "click", function() {
 		
 			// Show the menu screen
 			squabble.game.showScreen("menu-screen");

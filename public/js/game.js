@@ -17,6 +17,7 @@ squabble.game = (function() {
 		} 
 		
 		// Setup the screen
+		console.log('looking for: ', screenId, ' in ', squabble.screens);
 		squabble.screens[screenId].run();
 		
 		// Set the new screen as 'active'
