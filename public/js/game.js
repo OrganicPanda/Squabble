@@ -13,8 +13,11 @@ squabble.game = (function() {
 		
 		// Unset the currectly 'active' screen
 		if (activeScreen) { 
-			dom.removeClass(screen, "active"); 
+			dom.removeClass(activeScreen, "active"); 
 		} 
+		
+		// Setup the screen
+		squabble.screens[screenId].run();
 		
 		// Set the new screen as 'active'
 		dom.addClass(screen, "active");
@@ -22,6 +25,8 @@ squabble.game = (function() {
 	} 
 	
 	// Expose public methods 
-	return { showScreen : showScreen }; 
+	return { 
+		showScreen : showScreen
+	}; 
 	
 })();
