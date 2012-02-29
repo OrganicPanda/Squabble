@@ -33,15 +33,9 @@
 		width: 23.8em; 
 		height: 23.8em;
 	}
-<<<<<<< HEAD
-=======
 
 	/* @media screen and (orientation: portrait) {} */
 	/* @media screen and (orientation: landscape) {} */
-	
-	@media only screen and (min-width: 238px) { #game { width: 238px; height: 238px; } }
-	@media only screen and (min-width: 476px) { #game { width: 476px; height: 476px; } }
->>>>>>> eb81583106b364446b563a9863abf1076a139dca
 
 	/* Screens */
 	
