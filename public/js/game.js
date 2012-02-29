@@ -13,11 +13,10 @@ squabble.game = (function() {
 		
 		// Unset the currectly 'active' screen
 		if (activeScreen) { 
-			dom.removeClass(screen, "active"); 
+			dom.removeClass(activeScreen, "active"); 
 		} 
 		
 		// Setup the screen
-		console.log('looking for: ', screenId, ' in ', squabble.screens);
 		squabble.screens[screenId].run();
 		
 		// Set the new screen as 'active'
