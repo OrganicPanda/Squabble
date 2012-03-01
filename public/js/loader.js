@@ -16,12 +16,13 @@ window.addEventListener("load", function() {
 		load : [
 			"js/lib/sizzle-github.js",
 			"js/dom.js", 
+			"js/board.js",
+			"js/display.js",
 			"js/screen.game.js", 
 			"js/screen.menu.js", 
 			"js/screen.score.js",
 			"js/screen.splash.js",   
 			"js/game.js",
-			"js/board.js"
 		], 
 		
 		// Once they're loaded

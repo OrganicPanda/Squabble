@@ -4,18 +4,27 @@ squabble.screens["game-screen"] = (function() {
 	// Easy access
 	var game = squabble.game;
 	var dom = squabble.dom;
+	var board = squabble.board;
+	var display = squabble.display;
 	var id = "game-screen";
 	var firstRun = true;
 	
 	// First load setup
 	function setup() {
 	
-		// Wire up the buttons
-		dom.bind("#game-go-menu", "click", function() {
+		// Initialize the board backend and frontend
+		board.initialize(function() {
+			display.initialize(function() {
+				
+				// Wire up the buttons
+				dom.bind("#game-go-menu", "click", function() {
 		
-			// Show the menu screen
-			squabble.game.showScreen("menu-screen");
+					// Show the menu screen
+					squabble.game.showScreen("menu-screen");
 		
+				});
+				
+			});
 		});
 	
 	}
