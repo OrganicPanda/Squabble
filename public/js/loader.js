@@ -4,6 +4,16 @@ var squabble = {
 	settings : {
 		rows : 15,
 		columns : 15
+	},
+	controls : {
+		KEY_UP : "moveUp",
+		KEY_DOWN : "moveDown",
+		KEY_LEFT : "moveLeft",
+		KEY_RIGHT : "moveRight",
+		KEY_ENTER : "selectTile",
+		KEY_SPACE : "selectTile",
+		CLICK : "selectTile",
+		TOUCH : "selectTile"
 	}
 };
 
@@ -18,6 +28,7 @@ window.addEventListener("load", function() {
 			"js/dom.js", 
 			"js/board.js",
 			"js/display.js",
+			"js/input.js",
 			"js/screen.game.js", 
 			"js/screen.menu.js", 
 			"js/screen.score.js",
