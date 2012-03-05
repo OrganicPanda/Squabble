@@ -1,15 +1,11 @@
 // Represent the Squabble board
 squabble.board = (function() { 
 	
-	// Easy access
-	var settings; 
+	// Store a virtual board of tiles
 	var tiles;
 		
 	// Get the board ready
 	function initialize(callback) {
-		
-		// Store a reference to settings
-		settings = squabble.settings;
 		
 		// Start setting up the board positions
 		fillBoard();
@@ -26,9 +22,9 @@ squabble.board = (function() {
 		tiles = [];
 	
 		// Loop the cells
-		for (var x = 0, columns = settings.columns; x < columns; x++) {
+		for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
 			tiles[x] = [];
-			for (var y = 0, rows = settings.rows; y < rows; y++) {
+			for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
 				
 				tiles[x][y] = 0;
 				
@@ -41,7 +37,7 @@ squabble.board = (function() {
 	function inBounds(x, y) {
 	
 		// Check the supplied co-ordinates
-		return (x < 0 || x > (settings.columns - 1) || y < 0 || y > (settings.rows - 1)) ? false : true;
+		return (x < 0 || x > (squabble.settings.columns - 1) || y < 0 || y > (squabble.settings.rows - 1)) ? false : true;
 	
 	}
 	
@@ -102,7 +98,7 @@ squabble.board = (function() {
 		var copy = [];
 		
 		// We only need to loop x as we can get a copy of y with slice()
-		for (var x = 0, columns = settings.columns; x < columns; x++) {
+		for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
 			
 			copy[x] = tiles[x].slice(0);
 			
@@ -120,8 +116,8 @@ squabble.board = (function() {
 		var output = "";
 	
 		// Loop the cells (y axis first so that we print properly)
-		for (var y = 0, rows = settings.rows; y < rows; y++) {
-			for (var x = 0, columns = settings.columns; x < columns; x++) {
+		for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
+			for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
 				
 				output += (getTile(x, y) + " ");
 				

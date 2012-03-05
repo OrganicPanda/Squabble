@@ -1,22 +1,20 @@
 // Represent the Squabble board
 squabble.display = (function() { 
 	
-	// Easy access
-	var dom = squabble.dom;
-	var $ = dom.$;
-	var settings; 
+	// The board DOM element
 	var domBoard;
+	
+	// Store a reference to each board tile
 	var tiles;
+	
+	// On first run we setup() 
 	var firstRun = true;
 	
 	// First load setup
 	function setup() {
-	
-		// Store a reference to settings
-		settings = squabble.settings;
 		
 		// Get the DOM game board
-		domBoard = $("#board")[0]; 
+		domBoard = squabble.dom.$("#board")[0]; 
 		
 		// Start setting up the board positions
 		fillBoard();
@@ -47,13 +45,13 @@ squabble.display = (function() {
 		var domPosition;
 	
 		// Loop the cells
-		for (var y = 0, rows = settings.rows; y < rows; y++) {
+		for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
 			
 			// Create the row container
 			domRow = dom.addClass(document.createElement("div"), 'row');
 			domBoard.appendChild(domRow);
 			
-			for (var x = 0, columns = settings.columns; x < columns; x++) {
+			for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
 				
 				// Because we're looping y then x we need to create the x axis on demand
 				if (typeof tiles[x] === "undefined") {
@@ -85,7 +83,7 @@ squabble.display = (function() {
 		var output = "";
 	
 		// Loop the cells (y axis first so that we print properly)
-		for (var y = 0, rows = settings.rows; y < rows; y++) {
+		for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
 			console.log(tiles[y]);
 		}
 	

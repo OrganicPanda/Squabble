@@ -1,26 +1,23 @@
-// Some game helper functions
+// Allow the user to switch between game screens
+// Each screen module will provide a 'run' function and take care of itself 
 squabble.game = (function() { 
-	
-	// Easy access
-	var dom = squabble.dom; 
-	var $ = dom.$; 
 		
 	// Change the 'active' screen
 	function showScreen(screenId) {
 		
-		var activeScreen = $("#game .screen.active")[0];
-		var screen = $("#" + screenId)[0];
+		var activeScreen = squabble.dom.$("#game .screen.active")[0];
+		var screen = squabble.dom.$("#" + screenId)[0];
 		
 		// Unset the currectly 'active' screen
 		if (activeScreen) { 
-			dom.removeClass(activeScreen, "active"); 
+			squabble.dom.removeClass(activeScreen, "active"); 
 		} 
 		
 		// Setup the screen
 		squabble.screens[screenId].run();
 		
 		// Set the new screen as 'active'
-		dom.addClass(screen, "active");
+		squabble.dom.addClass(screen, "active");
 	
 	} 
 	

@@ -1,17 +1,11 @@
 // Handle user input for the game
 squabble.input = (function() {
-
-	// Easy access
-	var dom = squabble.dom;
-	var $ = dom.$;
-	var settings = squabble.settings;
-	var inputHandlers;
 	
 	// Start the module
 	function initialize() {
-	
-		// Set up the event handlers
-		inputHandlers = {};
+		
+		// Get the board
+		var domBoard = squabble.dom.$("#board")[0]; 
 	
 	}
 	

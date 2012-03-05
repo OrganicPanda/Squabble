@@ -1,9 +1,6 @@
 // Some DOM helper functions
 squabble.dom = (function() { 
 	
-	// Easy access
-	var $ = Sizzle;
-	
 	// Does element have classname?
 	function hasClass(el, clsName) { 
 		var regex = new RegExp("(^|\\s)" + clsName + "(\\s|$)"); 
@@ -34,7 +31,7 @@ squabble.dom = (function() {
 	
 	// Expose public methods
 	return { 
-		$ : $, 
+		$ : Sizzle, 
 		hasClass : hasClass, 
 		addClass : addClass, 
 		removeClass : removeClass,
