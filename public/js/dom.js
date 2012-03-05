@@ -23,7 +23,7 @@ squabble.dom = (function() {
 	// Bind an element event to a handler function	
 	function bind(element, event, handler) { 
 		if (typeof element == "string") { 
-			element = $(element)[0];
+			element = Sizzle(element)[0];
 		} 
 		element.addEventListener(event, handler, false);
 		return element;

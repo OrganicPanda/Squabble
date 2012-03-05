@@ -48,7 +48,7 @@ squabble.display = (function() {
 		for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
 			
 			// Create the row container
-			domRow = dom.addClass(document.createElement("div"), 'row');
+			domRow = squabble.dom.addClass(document.createElement("div"), 'row');
 			domBoard.appendChild(domRow);
 			
 			for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
@@ -59,7 +59,7 @@ squabble.display = (function() {
 				}
 				
 				// Create the cell
-				domPosition = dom.addClass(document.createElement("div"), 'position');
+				domPosition = squabble.dom.addClass(document.createElement("div"), 'position');
 				domRow.appendChild(domPosition);
 				
 				tiles[x][y] = domPosition;
