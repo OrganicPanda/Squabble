@@ -17,7 +17,7 @@ var squabble = {
 	}
 };
 
-// Start load our game scripts when the page is finished doing it's thing
+// Start to load our game scripts when the page is finished doing it's thing
 window.addEventListener("load", function() { 
 
 	Modernizr.load([{ 

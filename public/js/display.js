@@ -40,29 +40,21 @@ squabble.display = (function() {
 	
 		// Start as an empty array
 		tiles = [];
-		
-		var domRow;
+	
+		// Get the row containers
+		var domRows = squabble.dom.$(".row", domBoard);
 		var domPosition;
 	
 		// Loop the cells
-		for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
-			
-			// Create the row container
-			domRow = squabble.dom.addClass(document.createElement("div"), 'row');
-			domBoard.appendChild(domRow);
-			
-			for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
+		for (var x = 0, columns = squabble.settings.columns; x < columns; x++) {
+		
+			// Init the row
+			tiles[x] = [];
+		
+			for (var y = 0, rows = squabble.settings.rows; y < rows; y++) {
 				
-				// Because we're looping y then x we need to create the x axis on demand
-				if (typeof tiles[x] === "undefined") {
-					tiles[x] = [];
-				}
-				
-				// Create the cell
-				domPosition = squabble.dom.addClass(document.createElement("div"), 'position');
-				domRow.appendChild(domPosition);
-				
-				tiles[x][y] = domPosition;
+				// Get the cell
+				tiles[x][y] = squabble.dom.$(".position", domRows[y])[x];
 				
 			}
 		}
