@@ -24,14 +24,24 @@
 	html, body, #game, #screens, #screens .screen { width: 100%; height: 100%; }
 	html, body, #game, #screens, #screens .screen, #bench, #tools, #board, #board .row, #board .position { overflow: hidden; }
 
+	/* body must be relative to support our game centering technique */
+	body {
+		background-color: #000000; 
+		position: relative;
+	}
+
 	/* Default to 238px square as this is our lowest working res */
 	/* iPhone 1/2/3/4 landscape */
 	#game {
-		position: relative;
+		position: absolute;
 		background: green;
 		font-size: 100%;
+		top: 50%;
+		left: 50%;
 		width: 23.8em; 
 		height: 23.8em;
+		margin-top: -11.9em;
+		margin-left: -11.9em;
 	}
 
 	/* @media screen and (orientation: portrait) {} */
