@@ -4,16 +4,12 @@ var Squabble = Squabble || {};
 // Squabble Game Class. Used to start and manage a game of Squabble
 Squabble.Game = function(settings, namespace) {
 	
-	// Apply settings
-	this.settings = settings;
+	// Apply args
+	this.settings = settings || {};
+	var namespace = namespace || {};
 	
 	// Supply any missing settings from our defaults
 	Squabble.Util.mergeObjects(this.settings, {
-		selector : Sizzle,
-		screens : {
-			one : "Screen One",
-			two : "Screen Two"
-		},
 		rows : 15,
 		columns : 15,
 		controls : {}
@@ -24,8 +20,11 @@ Squabble.Game = function(settings, namespace) {
 	Squabble.Util.mergeObjects(namespace, {
 		selector : Sizzle,
 		Util : Squabble.Util,
+		Dom : Squabble.Dom,
 		Screen : {
 			Splash : Squabble.Screen.Splash,
+			Menu : Squabble.Screen.Menu,
+			Score : Squabble.Screen.Score,
 			Board : Squabble.Screen.Board
 		}
 	});

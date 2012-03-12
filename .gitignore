@@ -1,5 +1,6 @@
 .DS_Store
 .project
 serve
+serve.bat
 serve.sh
 *~
