@@ -3,10 +3,13 @@ var Squabble = Squabble || {};
 Squabble.Screen = Squabble.Screen || {};
 
 // Squabble Base Screen Class. Extend to create a screen
-Squabble.Screen.Base = function(game) { 
+Squabble.Screen.Base = function(game, screenElement) { 
 	
 	// Store our game controller
 	this.game = game;
+	
+	// Store the DOM element that represents this screen
+	this.element = screenElement;
 	
 };
 

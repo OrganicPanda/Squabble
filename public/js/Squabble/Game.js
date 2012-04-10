@@ -2,7 +2,7 @@
 var Squabble = Squabble || {};
 
 // Squabble Game Class. Used to start and manage a game of Squabble
-Squabble.Game = function(settings) {
+Squabble.Game = function(gameElement, settings) {
 	
 	// Apply args
 	this.settings = settings || {};
@@ -19,10 +19,10 @@ Squabble.Game = function(settings) {
 	this.util = Squabble.Util;
 	this.dom = Squabble.Dom;
 	this.screen = {
-		splash : new Squabble.Screen.Splash(this),
-		menu : new Squabble.Screen.Menu(this),
-		score : new Squabble.Screen.Score(this),
-		board : new Squabble.Screen.Board(this)
+		splash : new Squabble.Screen.Splash(this, this.selector('', gameElement)),
+		menu : new Squabble.Screen.Menu(this, this.selector('', gameElement)),
+		score : new Squabble.Screen.Score(this, this.selector('', gameElement)),
+		board : new Squabble.Screen.Board(this, this.selector('', gameElement))
 	};
 	this.currentScreenId = null;
 	
