@@ -5,10 +5,8 @@ Squabble.Screen = Squabble.Screen || {};
 // Squabble Splash Screen Class. Used to manage the Splash Screen
 Squabble.Screen.Splash = function(game) { 
 	
-	// Store our game controller
-	this.game = game;
-	
-	console.log('Constructing Splash Screen');
+	// Construct super
+	Squabble.Screen.Base.apply(this, arguments);
 	
 	// Wire up the buttons
 	/*Squabble.Dom.bind("#splash-go-menu", "click", function() {
@@ -20,9 +18,5 @@ Squabble.Screen.Splash = function(game) {
 	
 };
 
-// Show this screen
-Squabble.Screen.Splash.prototype.run = function() {
-	
-	console.log('Running Splash Screen');
-	
-};
+// Extend the Base screen
+Squabble.Screen.Splash.prototype = new Squabble.Screen.Base;

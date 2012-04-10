@@ -8,6 +8,7 @@ window.addEventListener("load", function() {
 			"js/lib/sizzle-github.js",
 			"js/Squabble/Util.js",
 			"js/Squabble/Dom.js",
+			"js/Squabble/Screen/Base.js",
 			"js/Squabble/Screen/Splash.js",
 			"js/Squabble/Screen/Menu.js",
 			"js/Squabble/Screen/Score.js",

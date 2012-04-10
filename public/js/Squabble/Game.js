@@ -15,30 +15,36 @@ Squabble.Game = function(settings) {
 	});
 	
 	// Construct our API
-	this.Selector = this.settings.selector || Sizzle;
-	this.Util = Squabble.Util;
-	this.Dom = Squabble.Dom;
-	this.Screen = {
-		Splash : new Squabble.Screen.Splash(this),
-		Menu : new Squabble.Screen.Menu(this),
-		Score : new Squabble.Screen.Score(this),
-		Board : new Squabble.Screen.Board(this)
+	this.selector = this.settings.selector || Sizzle;
+	this.util = Squabble.Util;
+	this.dom = Squabble.Dom;
+	this.screen = {
+		splash : new Squabble.Screen.Splash(this),
+		menu : new Squabble.Screen.Menu(this),
+		score : new Squabble.Screen.Score(this),
+		board : new Squabble.Screen.Board(this)
 	};
+	this.currentScreenId = null;
 	
 };
 
 // Start the game
 Squabble.Game.prototype.start = function() {
 	
-	console.log('Game started!');
-	console.log(this);
+	// Start on the Splash screen
+	this.switchScreen('splash');
 
 };
 
 // Switch to a game screen
 Squabble.Game.prototype.switchScreen = function(screenId) {
 	
-	console.log('Game started!');
-	console.log(this);
+	// Close the currently opened screen
+	if (this.currentScreenId) {
+		this.screen[this.currentScreenId].close();
+	}
+	
+	// Open the new screen
+	this.screen[screenId].open();
 
 };

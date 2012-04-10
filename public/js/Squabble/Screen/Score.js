@@ -5,8 +5,8 @@ Squabble.Screen = Squabble.Screen || {};
 // Squabble Score Screen Class. Used to manage the Score Screen
 Squabble.Screen.Score = function(game) {
 	
-	// Store our game controller
-	this.game = game;	
+	// Construct super
+	Squabble.Screen.Base.apply(this, arguments);	
 	
 	/* Wire up the buttons
 	dom.bind("#score-go-menu", "click", function() {
@@ -18,9 +18,5 @@ Squabble.Screen.Score = function(game) {
 	
 };
 
-// Show this screen
-Squabble.Screen.Score.prototype.run = function() {
-	
-	console.log('Running Score Screen');
-	
-};
+// Extend the Base screen
+Squabble.Screen.Score.prototype = new Squabble.Screen.Base;

@@ -5,8 +5,8 @@ Squabble.Screen = Squabble.Screen || {};
 // Squabble Menu Screen Class. Used to manage the Menu Screen
 Squabble.Screen.Menu = function(game) {
 	
-	// Store our game controller
-	this.game = game;
+	// Construct super
+	Squabble.Screen.Base.apply(this, arguments);
 	
 	/* Wire up the buttons
 	dom.bind("#menu-go-game", "click", function() {
@@ -24,9 +24,5 @@ Squabble.Screen.Menu = function(game) {
 	
 };
 
-// Show this screen
-Squabble.Screen.Menu.prototype.run = function() {
-	
-	console.log('Running Menu Screen');
-	
-};
+// Extend the Base screen
+Squabble.Screen.Menu.prototype = new Squabble.Screen.Base;
