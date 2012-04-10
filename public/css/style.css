@@ -30,6 +30,14 @@
 		position: relative;
 	}
 
+	/* This message will show when we cannot play */
+	#unsupported { 
+		display: none;
+		background-color: #ffffff;
+		padding: 1em;
+		margin: 1em;
+	}
+
 	/* Default to 238px square as this is our lowest working res */
 	/* iPhone 1/2/3/4 landscape */
 	#game {

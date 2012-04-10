@@ -3,7 +3,10 @@ var Squabble = Squabble || {};
 Squabble.Screen = Squabble.Screen || {};
 
 // Squabble Splash Screen Class. Used to manage the Splash Screen
-Squabble.Screen.Splash = function() { 
+Squabble.Screen.Splash = function(game) { 
+	
+	// Store our game controller
+	this.game = game;
 	
 	console.log('Constructing Splash Screen');
 	

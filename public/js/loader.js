@@ -25,7 +25,6 @@ window.addEventListener("load", function() {
 			// Start the game
 			game.start();
 			
-			
 		}
 	
 	}]);

@@ -3,7 +3,10 @@ var Squabble = Squabble || {};
 Squabble.Screen = Squabble.Screen || {};
 
 // Squabble Score Screen Class. Used to manage the Score Screen
-Squabble.Screen.Score = function() {
+Squabble.Screen.Score = function(game) {
+	
+	// Store our game controller
+	this.game = game;	
 	
 	/* Wire up the buttons
 	dom.bind("#score-go-menu", "click", function() {

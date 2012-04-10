@@ -2,11 +2,10 @@
 var Squabble = Squabble || {};
 
 // Squabble Game Class. Used to start and manage a game of Squabble
-Squabble.Game = function(settings, namespace) {
+Squabble.Game = function(settings) {
 	
 	// Apply args
 	this.settings = settings || {};
-	var namespace = namespace || {};
 	
 	// Supply any missing settings from our defaults
 	Squabble.Util.mergeObjects(this.settings, {
@@ -15,25 +14,16 @@ Squabble.Game = function(settings, namespace) {
 		controls : {}
 	});
 	
-	// This is pretty much a poor mans Dependency Injection.
-	// Merge namespaces
-	Squabble.Util.mergeObjects(namespace, {
-		selector : Sizzle,
-		Util : Squabble.Util,
-		Dom : Squabble.Dom,
-		Screen : {
-			Splash : Squabble.Screen.Splash,
-			Menu : Squabble.Screen.Menu,
-			Score : Squabble.Screen.Score,
-			Board : Squabble.Screen.Board
-		}
-	});
-	
-	// Now apply the namespace. This time we're taking 
-	Squabble.Util.mergeObjects(Squabble, namespace, true);
-	
-	console.log('Settings: ', this.settings);
-	console.log('Squabble Namespace: ', Squabble);
+	// Construct our API
+	this.Selector = this.settings.selector || Sizzle;
+	this.Util = Squabble.Util;
+	this.Dom = Squabble.Dom;
+	this.Screen = {
+		Splash : new Squabble.Screen.Splash(this),
+		Menu : new Squabble.Screen.Menu(this),
+		Score : new Squabble.Screen.Score(this),
+		Board : new Squabble.Screen.Board(this)
+	};
 	
 };
 
@@ -41,5 +31,14 @@ Squabble.Game = function(settings, namespace) {
 Squabble.Game.prototype.start = function() {
 	
 	console.log('Game started!');
+	console.log(this);
+
+};
+
+// Switch to a game screen
+Squabble.Game.prototype.switchScreen = function(screenId) {
+	
+	console.log('Game started!');
+	console.log(this);
 
 };
