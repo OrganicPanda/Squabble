@@ -8,19 +8,19 @@ Squabble.Screen.Menu = function(game) {
 	// Construct super
 	Squabble.Screen.Base.apply(this, arguments);
 	
-	/* Wire up the buttons
-	dom.bind("#menu-go-game", "click", function() {
+	// Wire up the buttons
+	this.game.dom.bind(this.game.selector("#menu-go-board", this.element)[0], "click", function() {
+		
+		// Show the board screen
+		this.game.switchScreen('board');
 	
-		// Show the game screen
-		squabble.game.showScreen("game-screen");
+	}, this);
+	this.game.dom.bind(this.game.selector("#menu-go-score", this.element)[0], "click", function() {
+		
+		// Show the score screen
+		this.game.switchScreen('score');
 	
-	});
-	dom.bind("#menu-go-score", "click", function() {
-	
-		// Show the high score screen
-		squabble.game.showScreen("score-screen");
-	
-	}); */
+	}, this);
 	
 };
 

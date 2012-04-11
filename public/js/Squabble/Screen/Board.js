@@ -8,10 +8,13 @@ Squabble.Screen.Board = function(game) {
 	// Construct super
 	Squabble.Screen.Base.apply(this, arguments);
 	
-	// Store our game controller
-	this.game = game;
+	// Wire up the buttons
+	this.game.dom.bind(this.game.selector("#board-go-menu", this.element)[0], "click", function() {
+		
+		// Show the main menu
+		this.game.switchScreen('menu');
 	
-	console.log('Constructing Board Screen');
+	}, this);
 	
 };
 

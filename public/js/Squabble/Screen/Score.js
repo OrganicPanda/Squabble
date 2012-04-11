@@ -8,13 +8,13 @@ Squabble.Screen.Score = function(game) {
 	// Construct super
 	Squabble.Screen.Base.apply(this, arguments);	
 	
-	/* Wire up the buttons
-	dom.bind("#score-go-menu", "click", function() {
+	// Wire up the buttons
+	this.game.dom.bind(this.game.selector("#score-go-menu", this.element)[0], "click", function() {
 		
-		// Show the menu screen
-		squabble.game.showScreen("menu-screen");
+		// Show the score screen
+		this.game.switchScreen('menu');
 	
-	}); */
+	}, this);
 	
 };
 

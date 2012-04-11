@@ -9,12 +9,12 @@ Squabble.Screen.Splash = function(game) {
 	Squabble.Screen.Base.apply(this, arguments);
 	
 	// Wire up the buttons
-	/*Squabble.Dom.bind("#splash-go-menu", "click", function() {
+	this.game.dom.bind(this.game.selector("#splash-go-menu", this.element)[0], "click", function() {
 		
 		// Show the main menu
-		squabble.game.showScreen("menu-screen");
-		
-	});	*/
+		this.game.switchScreen('menu');
+	
+	}, this);
 	
 };
 

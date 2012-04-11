@@ -24,7 +24,9 @@ Squabble.Dom.removeClass = function(el, clsName) {
 } 
 
 // Bind an element event to a handler function	
-Squabble.Dom.bind = function(element, event, handler) { 
-	element.addEventListener(event, handler, false);
+Squabble.Dom.bind = function(element, event, handler, context) { 
+	element.addEventListener(event, context ? function() { 
+		handler.apply(context, arguments);
+	} : handler, false);
 	return element;
 }
