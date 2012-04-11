@@ -12,7 +12,7 @@ Squabble.Dom.hasClass = function(el, clsName) {
 
 // Add classname to element
 Squabble.Dom.addClass = function(el, clsName) { 
-	if (!hasClass(el, clsName)) { el.className += " " + clsName; } 
+	if (!this.hasClass(el, clsName)) { el.className += " " + clsName; } 
 	return el;
 } 
 
@@ -25,9 +25,6 @@ Squabble.Dom.removeClass = function(el, clsName) {
 
 // Bind an element event to a handler function	
 Squabble.Dom.bind = function(element, event, handler) { 
-	if (typeof element == "string") { 
-		element = Sizzle(element)[0];
-	} 
 	element.addEventListener(event, handler, false);
 	return element;
 }

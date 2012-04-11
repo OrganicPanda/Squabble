@@ -17,6 +17,7 @@ Squabble.Screen.Base = function(game, screenElement) {
 Squabble.Screen.Base.prototype.open = function() {
 	
 	console.log('Opening Screen: ', this);
+	this.game.dom.addClass(this.element, 'active-screen');
 	
 };
 
@@ -24,5 +25,6 @@ Squabble.Screen.Base.prototype.open = function() {
 Squabble.Screen.Base.prototype.close = function() {
 	
 	console.log('Closing Screen: ', this);
+	this.game.dom.removeClass(this.element, 'active-screen');
 	
 };

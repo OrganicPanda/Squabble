@@ -21,7 +21,7 @@ window.addEventListener("load", function() {
 		complete : function() {
 			
 			// Create the game
-			var game = new Squabble.Game();
+			var game = new Squabble.Game('#game');
 			
 			// Start the game
 			game.start();

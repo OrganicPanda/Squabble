@@ -67,7 +67,7 @@
 			z-index : 10;
 		}
 
-		#screens .screen.active {
+		#screens .active-screen {
 			display: block;
 		}
 	

@@ -2,7 +2,7 @@
 var Squabble = Squabble || {};
 
 // Squabble Game Class. Used to start and manage a game of Squabble
-Squabble.Game = function(gameElement, settings) {
+Squabble.Game = function(gameElementSelector, settings) {
 	
 	// Apply args
 	this.settings = settings || {};
@@ -16,13 +16,14 @@ Squabble.Game = function(gameElement, settings) {
 	
 	// Construct our API
 	this.selector = this.settings.selector || Sizzle;
+	this.element = this.selector(gameElementSelector)[0];
 	this.util = Squabble.Util;
 	this.dom = Squabble.Dom;
 	this.screen = {
-		splash : new Squabble.Screen.Splash(this, this.selector('', gameElement)),
-		menu : new Squabble.Screen.Menu(this, this.selector('', gameElement)),
-		score : new Squabble.Screen.Score(this, this.selector('', gameElement)),
-		board : new Squabble.Screen.Board(this, this.selector('', gameElement))
+		splash : new Squabble.Screen.Splash(this, this.selector('#splash-screen', this.element)[0]),
+		menu : new Squabble.Screen.Menu(this, this.selector('#menu-screen', this.element)[0]),
+		score : new Squabble.Screen.Score(this, this.selector('#score-screen', this.element)[0]),
+		board : new Squabble.Screen.Board(this, this.selector('#board-screen', this.element)[0])
 	};
 	this.currentScreenId = null;
 	
@@ -46,5 +47,6 @@ Squabble.Game.prototype.switchScreen = function(screenId) {
 	
 	// Open the new screen
 	this.screen[screenId].open();
+	this.currentScreenId = screenId;
 
 };
