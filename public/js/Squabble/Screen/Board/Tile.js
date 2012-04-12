@@ -21,11 +21,11 @@ Squabble.Screen.Board.Tile = function(game, element, letter) {
 Squabble.Screen.Board.Tile.prototype.initDrag = function() {
 
 	// Enable dragging
-	this.element.setAttribute('draggable', 'true');
+	//this.element.setAttribute('draggable', 'true');
 	
 	// Listen for drags
-	this.game.dom.bind(this.element, 'dragstart', this.handleDragStart, this);
-	this.game.dom.bind(this.element, 'dragend', this.handleDragEnd, this);
+	//this.game.dom.bind(this.element, 'dragstart', this.handleDragStart, this);
+	//this.game.dom.bind(this.element, 'dragend', this.handleDragEnd, this);
 
 }
 

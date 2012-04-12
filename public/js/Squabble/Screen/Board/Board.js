@@ -72,17 +72,70 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 
 	// Get our bench tiles
 	var dombenchtiles = this.game.selector('#bench .tile', this.element);
-	var benchtiles = [];
+	var benchtiles = [];	
 	
-	// Loop them
+	// Record the state of dragging
+	var dragging = false;
+	var draggingtile = null;
+	var floatingtilecontainer = this.game.selector('#floating-tile', this.element)[0];
+	var floatingtile = null;
+	
+	// Loop the tiles
 	for (var t = 0, tl = dombenchtiles.length; t < tl; t++) {
 		
-		// Create the space and make sure it's listening for drop events
+		// Create the tile
 		var tile = new Squabble.Screen.Board.Tile(this.game, dombenchtiles[t], dombenchtiles[t].innerHtml);
 		tile.initDrag();
 		benchtiles.push(tile);
 		
+		// Listen for dragging
+		var hackydom = this.game.dom;
+		var hackyelem = this.element;
+		this.game.dom.bind(dombenchtiles[t], 'mousedown', function(e) { 
+
+			// If the mouse is down on this tile then assume we're dragging
+			dragging = true;
+			draggingtile = this;
+			
+			// Put the tile in the floating container that will follow the mouse
+			floatingtilecontainer.appendChild(draggingtile);
+			floatingtilecontainer.style.display = 'block';
+			
+			console.log(
+				'click x:', e.pageX, 'y:', e.pageY, 
+				' offsetWidth = ', floatingtilecontainer.offsetWidth, ' offsetHeight = ', floatingtilecontainer.offsetHeight,
+				' left = ', (e.pageX - (floatingtilecontainer.offsetWidth / 2)) + 'px',
+				' top = ', (e.pageY - (floatingtilecontainer.offsetHeight / 2)) + 'px'
+			);
+			
+			boardoffset = hackydom.getOffsetRect(hackyelem);
+			
+			floatingtilecontainer.style.left = (e.pageX - (floatingtilecontainer.offsetWidth / 2) - boardoffset.left) + 'px';
+			floatingtilecontainer.style.top = (e.pageY - (floatingtilecontainer.offsetHeight / 2) - boardoffset.top) + 'px';
+		
+		}, dombenchtiles[t]);
+		
 	}
+	
+	// Any time the mouse is up the dragging has stopped
+	this.game.dom.bind(document, 'mouseup', function() { 
+	
+		// Reset the dragging state
+		dragging = false; 
+		draggingtile = null;
+	
+	}, this);
+	
+	// Listen for the user dragging a tile
+	this.game.dom.bind(document, 'mousemove', function(e) { 
+		
+		// Are we currently dragging?
+		if (dragging && draggingtile) { 
+			floatingtilecontainer.style.left = e.pageX + 'px';
+			floatingtilecontainer.style.top = e.pageY + 'px';
+		}
+		
+	}, this);	
 	
 	// Apply our tiles
 	this.benchtiles = benchtiles;

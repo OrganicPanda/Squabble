@@ -19,12 +19,11 @@
 		z-index: 20;		
 	}
 	
-	[draggable] {
+	* {
 		-moz-user-select: none;
 		-khtml-user-select: none;
 		-webkit-user-select: none;
 		user-select: none;
-		cursor: move;
 	}
 
 /* Game styles */
@@ -81,47 +80,14 @@
 	
 		/* Board screen */
 		
-			#bench, #tools, #board {
+			#bench, #tools, #board, #floating-tile {
 				position: absolute;
 			}
 			
-			/*
-			px:							238.00	x	238.00
-			%:							100.00	x	100.00
-			px:			
-			border						1.00		
-			cell						13.00		
-			cell gap					1.00		
-			%:			
-			border						0.42		
-			cell						5.46		
-			cell gap					0.42		
-
-			board px					209.00	x	209.00
-			board %						87.82	x	87.82
-			board offset px				1.00		1.00
-			board offset %				0.42		0.42
-
-			bench px					236.00	x	26.00
-			bench %						99.16	x	10.92
-			bench offset px				1.00		211.00
-			bench offset %				0.42		88.66
-
-			tools px					26.00	x	209.00
-			tools %						10.92	x	87.82
-			tools offset px				211.00		1.00
-			tools offset %				88.66		0.42
-
-			board inner px				209.00	x	209.00
-			board inner cell px			13.00	x	13.00
-			board inner cell %			6.22	x	6.22
-			board inner cell gap px		13.00	x	1.00
-			board inner cell gap %		6.22	x	0.48
-			*/
-			
 			#bench { bottom: 0.1em; left: 0.1em; width: 23.6em; height: 2.6em; background-color: red; }
 			#tools { top: 0.1em; right: 0.1em; width: 2.6em; height: 20.9em; background-color: red; }
-			#board { top: 0.1em; left: 0.1em; width: 20.9em; height: 20.9em; background-color: red; }			
+			#board { top: 0.1em; left: 0.1em; width: 20.9em; height: 20.9em; background-color: red; }
+			#floating-tile { display: none; }		
 		
 			/* Clearfix the rows */
 			.row:before, .row:after { content: ""; display: table; }
@@ -147,6 +113,7 @@
 				-moz-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);  
 				-webkit-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
 				box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
+				cursor: move;
 			}
 			.tile-moving {}
 	
