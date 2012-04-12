@@ -65,6 +65,9 @@ Squabble.Screen.Board.Space.prototype.handleDrop = function(e) {
 	if (e.stopPropagation) {
 		e.stopPropagation(); // stops the browser from redirecting.
 	}
+	
+	// Remove the hover class
+	this.game.dom.removeClass(this.element, 'space-hovered');
 
 	// Don't do anything if we're dropping on the same column we're dragging.
 	//if (dragSrcEl_ != e.target) {
