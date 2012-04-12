@@ -23,7 +23,7 @@ Squabble.Game = function(gameElementSelector, settings) {
 		splash : new Squabble.Screen.Splash(this, this.selector('#splash-screen', this.element)[0]),
 		menu : new Squabble.Screen.Menu(this, this.selector('#menu-screen', this.element)[0]),
 		score : new Squabble.Screen.Score(this, this.selector('#score-screen', this.element)[0]),
-		board : new Squabble.Screen.Board(this, this.selector('#board-screen', this.element)[0])
+		board : new Squabble.Screen.Board.Board(this, this.selector('#board-screen', this.element)[0])
 	};
 	this.currentScreenId = null;
 	
