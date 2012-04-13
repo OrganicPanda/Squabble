@@ -16,7 +16,9 @@ Squabble.Screen.Board.Board = function(game) {
 	this.initSpaces();
 	
 	// Initialise our tiles
+	this.benchtiles = [];
 	this.initTiles();
+	this.initTilesDrag();
 	
 	// Wire up the buttons
 	this.game.dom.bind(this.game.selector("#board-go-menu", this.element)[0], "click", function() {
@@ -72,13 +74,7 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 
 	// Get our bench tiles
 	var dombenchtiles = this.game.selector('#bench .tile', this.element);
-	var benchtiles = [];	
-	
-	// Record the state of dragging
-	var dragging = false;
-	var draggingtile = null;
-	var floatingtilecontainer = this.game.selector('#floating-tile', this.element)[0];
-	var floatingtile = null;
+	var benchtiles = [];
 	
 	// Loop the tiles
 	for (var t = 0, tl = dombenchtiles.length; t < tl; t++) {
@@ -88,10 +84,46 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 		tile.initDrag();
 		benchtiles.push(tile);
 		
+	}
+	
+	// Apply our tiles
+	this.benchtiles = benchtiles;
+
+}
+
+// Get the tiles ready to be dragged
+Squabble.Screen.Board.Board.prototype.initTilesDrag = function() {	
+	
+	// Record the state of dragging
+	var dragging = false;
+	var draggingtile = null;
+	var floatingtilecontainer = this.game.selector('#floating-tile', this.element)[0];
+	var floatingtile = null;
+	
+	// Return the correct position for the floating tile
+	// Based on mouse position x, y
+	var hackthis = this;
+	var getIdealFloatPosition = function(x, y) {
+		
+		// Get the offset of the board screen
+		var boardoffset = hackthis.game.dom.getOffsetRect(hackthis.element);
+		
+		// Use that offset along with the width and height of the floating tile to 
+		// work out the best place for it relative to the board screen 
+		return {
+			left : x - (floatingtilecontainer.offsetWidth / 2) - boardoffset.left,
+			top : y - (floatingtilecontainer.offsetHeight / 2) - boardoffset.top
+		}
+		
+	}
+	
+	// Loop the tiles
+	for (var t = 0, tl = this.benchtiles.length; t < tl; t++) {
+		
 		// Listen for dragging
-		var hackydom = this.game.dom;
-		var hackyelem = this.element;
-		this.game.dom.bind(dombenchtiles[t], 'mousedown', function(e) { 
+		//var hackydom = this.game.dom;
+		//var hackyelem = this.element;
+		this.game.dom.bind(this.benchtiles[t].element, 'mousedown', function(e) { 
 
 			// If the mouse is down on this tile then assume we're dragging
 			dragging = true;
@@ -101,19 +133,12 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 			floatingtilecontainer.appendChild(draggingtile);
 			floatingtilecontainer.style.display = 'block';
 			
-			console.log(
-				'click x:', e.pageX, 'y:', e.pageY, 
-				' offsetWidth = ', floatingtilecontainer.offsetWidth, ' offsetHeight = ', floatingtilecontainer.offsetHeight,
-				' left = ', (e.pageX - (floatingtilecontainer.offsetWidth / 2)) + 'px',
-				' top = ', (e.pageY - (floatingtilecontainer.offsetHeight / 2)) + 'px'
-			);
-			
-			boardoffset = hackydom.getOffsetRect(hackyelem);
-			
-			floatingtilecontainer.style.left = (e.pageX - (floatingtilecontainer.offsetWidth / 2) - boardoffset.left) + 'px';
-			floatingtilecontainer.style.top = (e.pageY - (floatingtilecontainer.offsetHeight / 2) - boardoffset.top) + 'px';
+			// Now position the floating container			
+			var pos = getIdealFloatPosition(e.pageX, e.pageY);
+			floatingtilecontainer.style.left = pos.left + 'px';
+			floatingtilecontainer.style.top = pos.top + 'px';
 		
-		}, dombenchtiles[t]);
+		}, this.benchtiles[t].element);
 		
 	}
 	
@@ -131,14 +156,15 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 		
 		// Are we currently dragging?
 		if (dragging && draggingtile) { 
-			floatingtilecontainer.style.left = e.pageX + 'px';
-			floatingtilecontainer.style.top = e.pageY + 'px';
+			
+			// Position the floating container			
+			var pos = getIdealFloatPosition(e.pageX, e.pageY);
+			floatingtilecontainer.style.left = pos.left + 'px';
+			floatingtilecontainer.style.top = pos.top + 'px';
+			
 		}
 		
-	}, this);	
-	
-	// Apply our tiles
-	this.benchtiles = benchtiles;
+	}, this);
 
 }
 
