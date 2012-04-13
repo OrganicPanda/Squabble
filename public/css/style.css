@@ -28,8 +28,7 @@
 
 /* Game styles */
 	
-	html, body, #game, #screens, #screens .screen { width: 100%; height: 100%; }
-	html, body, #game, #screens, #screens .screen, #bench, #tools, #board, .row, .space { overflow: hidden; }
+	html, body, #game, #screens, #screens .screen { width: 100%; height: 100%; overflow: hidden; }
 
 	/* body must be relative to support our game centering technique */
 	body {
@@ -93,27 +92,35 @@
 			.row:before, .row:after { content: ""; display: table; }
 			.row:after { clear: both; }
 			.row { *zoom: 1; }
-			.row { margin-bottom: 0.1em; height: 1.3em; }
+			.row { margin-bottom: 0.1em; }
 			.row:last-child { margin-bottom: 0; }
 			.space { 
-				width: 1.3em; height: 100%; margin-right: 0.1em; float: left;
+				width: 1.3em; height: 1.3em; 
+				position: relative;
+				margin-right: 0.1em; 
+				float: left;
 				background: #4E9C3A;
 			}
 			.space:last-child { margin-right: 0; }
 			.space-hovered { background: #3F7F2F; }
-			.tile { 				
-				background: hsl(60, 100%, 50%);
-				margin: 0;
-				padding: 0.25em;
+			.space-floating { background: none; }
+			.tile { 
+				position: absolute;
+				display: block;
+				width: 100%; height: 100%;			
+				margin: -0.15em 0 0 0; padding: 0;
+				line-height: 1.4em;
+				overflow: hidden;
 				text-align: center;
 				font-weight: bold;
+				cursor: move;
+				background: hsl(60, 100%, 50%);
 				-webkit-border-radius: 0.1em;
 				-moz-border-radius: 0.1em; 
 				border-radius: 0.1em;
 				-moz-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);  
 				-webkit-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
 				box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
-				cursor: move;
 			}
 			.tile-moving {}
 	
@@ -129,7 +136,7 @@
 		#media-query:after { content: "238"; }
 		#media-query-cell-size:after { content: "1.3em"; }
 
-		.row { height: 1.3em; }
+		.space { height: 1.3em; }
 		.space { width: 1.3em; }
 
 		/* What you're about to see is not going to be pretty. Viewer discretion is advised */
@@ -138,186 +145,186 @@
 		
 			/* Minor. Every 15px add 0.1em to each square making for a total increase of 1.5em (15px @ font-size: 100%) */
 			@media only screen and (min-width: 253px) and (min-height: 253px) {	
-				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .row { height: 1.4em; } 	
+				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .space { height: 1.4em; } 	
 				.space { width: 1.4em; } #tools { height: 22.4em; } #bench { width: 25.1em; }	
 				#media-query-cell-size:after { content: "1.4"; } #media-query:after { content: "253"; } 	
 			}
 			@media only screen and (min-width: 268px) and (min-height: 268px) {	
-				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .row { height: 1.5em; } 	
+				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .space { height: 1.5em; } 	
 				.space { width: 1.5em; } #tools { height: 23.9em; } #bench { width: 26.6em; }	
 				#media-query-cell-size:after { content: "1.5"; } #media-query:after { content: "268"; } 	
 			}
 			@media only screen and (min-width: 283px) and (min-height: 283px) {	
-				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .row { height: 1.6em; } 	
+				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .space { height: 1.6em; } 	
 				.space { width: 1.6em; } #tools { height: 25.4em; } #bench { width: 28.1em; }	
 				#media-query-cell-size:after { content: "1.6"; } #media-query:after { content: "283"; } 	
 			}
 			@media only screen and (min-width: 298px) and (min-height: 298px) {	
-				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .row { height: 1.7em; } 	
+				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .space { height: 1.7em; } 	
 				.space { width: 1.7em; } #tools { height: 26.9em; } #bench { width: 29.6em; }	
 				#media-query-cell-size:after { content: "1.7"; } #media-query:after { content: "298"; } 	
 			}
 			@media only screen and (min-width: 313px) and (min-height: 313px) {	
-				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .row { height: 1.8em; } 	
+				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .space { height: 1.8em; } 	
 				.space { width: 1.8em; } #tools { height: 28.4em; } #bench { width: 31.1em; }	
 				#media-query-cell-size:after { content: "1.8"; } #media-query:after { content: "313"; } 	
 			}
 			@media only screen and (min-width: 328px) and (min-height: 328px) {	
-				#game { width: 32.8em; height: 32.8em; margin: -16.4em 0 0 -16.4em; } #board { width: 29.9em; height: 29.9em; } .row { height: 1.9em; } 	
+				#game { width: 32.8em; height: 32.8em; margin: -16.4em 0 0 -16.4em; } #board { width: 29.9em; height: 29.9em; } .space { height: 1.9em; } 	
 				.space { width: 1.9em; } #tools { height: 29.9em; } #bench { width: 32.6em; }	
 				#media-query-cell-size:after { content: "1.9"; } #media-query:after { content: "328"; } 	
 			}
 			@media only screen and (min-width: 343px) and (min-height: 343px) {	
-				#game { width: 34.3em; height: 34.3em; margin: -17.15em 0 0 -17.15em; } #board { width: 31.4em; height: 31.4em; } .row { height: 2em; } 	
+				#game { width: 34.3em; height: 34.3em; margin: -17.15em 0 0 -17.15em; } #board { width: 31.4em; height: 31.4em; } .space { height: 2em; } 	
 				.space { width: 2em; } #tools { height: 31.4em; } #bench { width: 34.1em; }	
 				#media-query-cell-size:after { content: "2"; } #media-query:after { content: "343"; } 	
 			}
 			@media only screen and (min-width: 358px) and (min-height: 358px) {	
-				#game { width: 35.8em; height: 35.8em; margin: -17.9em 0 0 -17.9em; } #board { width: 32.9em; height: 32.9em; } .row { height: 2.1em; } 	
+				#game { width: 35.8em; height: 35.8em; margin: -17.9em 0 0 -17.9em; } #board { width: 32.9em; height: 32.9em; } .space { height: 2.1em; } 	
 				.space { width: 2.1em; } #tools { height: 32.9em; } #bench { width: 35.6em; }	
 				#media-query-cell-size:after { content: "2.1"; } #media-query:after { content: "358"; } 	
 			}
 			@media only screen and (min-width: 373px) and (min-height: 373px) {	
-				#game { width: 37.3em; height: 37.3em; margin: -18.65em 0 0 -18.65em; } #board { width: 34.4em; height: 34.4em; } .row { height: 2.2em; } 	
+				#game { width: 37.3em; height: 37.3em; margin: -18.65em 0 0 -18.65em; } #board { width: 34.4em; height: 34.4em; } .space { height: 2.2em; } 	
 				.space { width: 2.2em; } #tools { height: 34.4em; } #bench { width: 37.1em; }	
 				#media-query-cell-size:after { content: "2.2"; } #media-query:after { content: "373"; } 	
 			}
 			@media only screen and (min-width: 388px) and (min-height: 388px) {	
-				#game { width: 38.8em; height: 38.8em; margin: -19.4em 0 0 -19.4em; } #board { width: 35.9em; height: 35.9em; } .row { height: 2.3em; } 	
+				#game { width: 38.8em; height: 38.8em; margin: -19.4em 0 0 -19.4em; } #board { width: 35.9em; height: 35.9em; } .space { height: 2.3em; } 	
 				.space { width: 2.3em; } #tools { height: 35.9em; } #bench { width: 38.6em; }	
 				#media-query-cell-size:after { content: "2.3"; } #media-query:after { content: "388"; } 	
 			}
 			@media only screen and (min-width: 403px) and (min-height: 403px) {	
-				#game { width: 40.3em; height: 40.3em; margin: -20.15em 0 0 -20.15em; } #board { width: 37.4em; height: 37.4em; } .row { height: 2.4em; } 	
+				#game { width: 40.3em; height: 40.3em; margin: -20.15em 0 0 -20.15em; } #board { width: 37.4em; height: 37.4em; } .space { height: 2.4em; } 	
 				.space { width: 2.4em; } #tools { height: 37.4em; } #bench { width: 40.1em; }	
 				#media-query-cell-size:after { content: "2.4"; } #media-query:after { content: "403"; } 	
 			}
 			@media only screen and (min-width: 418px) and (min-height: 418px) {	
-				#game { width: 41.8em; height: 41.8em; margin: -20.9em 0 0 -20.9em; } #board { width: 38.9em; height: 38.9em; } .row { height: 2.5em; } 	
+				#game { width: 41.8em; height: 41.8em; margin: -20.9em 0 0 -20.9em; } #board { width: 38.9em; height: 38.9em; } .space { height: 2.5em; } 	
 				.space { width: 2.5em; } #tools { height: 38.9em; } #bench { width: 41.6em; }	
 				#media-query-cell-size:after { content: "2.5"; } #media-query:after { content: "418"; } 	
 			}
 			@media only screen and (min-width: 433px) and (min-height: 433px) {	
-				#game { width: 43.3em; height: 43.3em; margin: -21.65em 0 0 -21.65em; } #board { width: 40.4em; height: 40.4em; } .row { height: 2.6em; } 	
+				#game { width: 43.3em; height: 43.3em; margin: -21.65em 0 0 -21.65em; } #board { width: 40.4em; height: 40.4em; } .space { height: 2.6em; } 	
 				.space { width: 2.6em; } #tools { height: 40.4em; } #bench { width: 43.1em; }	
 				#media-query-cell-size:after { content: "2.6"; } #media-query:after { content: "433"; } 	
 			}
 			@media only screen and (min-width: 448px) and (min-height: 448px) {	
-				#game { width: 44.8em; height: 44.8em; margin: -22.4em 0 0 -22.4em; } #board { width: 41.9em; height: 41.9em; } .row { height: 2.7em; } 	
+				#game { width: 44.8em; height: 44.8em; margin: -22.4em 0 0 -22.4em; } #board { width: 41.9em; height: 41.9em; } .space { height: 2.7em; } 	
 				.space { width: 2.7em; } #tools { height: 41.9em; } #bench { width: 44.6em; }	
 				#media-query-cell-size:after { content: "2.7"; } #media-query:after { content: "448"; } 	
 			}
 			@media only screen and (min-width: 463px) and (min-height: 463px) {	
-				#game { width: 46.3em; height: 46.3em; margin: -23.15em 0 0 -23.15em; } #board { width: 43.4em; height: 43.4em; } .row { height: 2.8em; } 	
+				#game { width: 46.3em; height: 46.3em; margin: -23.15em 0 0 -23.15em; } #board { width: 43.4em; height: 43.4em; } .space { height: 2.8em; } 	
 				.space { width: 2.8em; } #tools { height: 43.4em; } #bench { width: 46.1em; }	
 				#media-query-cell-size:after { content: "2.8"; } #media-query:after { content: "463"; } 
 			}
 			
 		/* Major. Reset the cell size and double the overall size. iPad 1/2 landscape */
 		@media only screen and (min-width: 476px) and (min-height: 476px) { 
-			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .row { height: 1.3em; } 
+			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .space { height: 1.3em; } 
 			.space { width: 1.3em; } #tools { height: 20.9em; } #bench { width: 23.6em; }
 			#game { font-size: 200%; } #media-query:after { content: "476"; }
 		}
 		
 			/* Minor. Every 30px add 0.1em to each square making for a total increase of 1.5em (30px @ font-size: 200%) */
 			@media only screen and (min-width: 506px) and (min-height: 506px) {	
-				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .row { height: 1.4em; }
+				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .space { height: 1.4em; }
 				.space { width: 1.4em; } #tools { height: 22.4em; } #bench { width: 25.1em; }	
  				#media-query-cell-size:after { content: "1.4em"; } #media-query:after { content: "506"; } 
 			}
 			@media only screen and (min-width: 536px) and (min-height: 536px) {	
-				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .row { height: 1.5em; }
+				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .space { height: 1.5em; }
 				.space { width: 1.5em; } #tools { height: 23.9em; } #bench { width: 26.6em; }	
 				#media-query-cell-size:after { content: "1.5em"; } #media-query:after { content: "536"; } 
 			}
 			@media only screen and (min-width: 566px) and (min-height: 566px) {	
-				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .row { height: 1.6em; }
+				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .space { height: 1.6em; }
 				.space { width: 1.6em; } #tools { height: 25.4em; } #bench { width: 28.1em; }
 				#media-query-cell-size:after { content: "1.6em"; } #media-query:after { content: "566"; } 
 			}
 			@media only screen and (min-width: 596px) and (min-height: 596px) {	
-				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .row { height: 1.7em; } 
+				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .space { height: 1.7em; } 
 				.space { width: 1.7em; } #tools { height: 26.9em; } #bench { width: 29.6em; }	
 				#media-query-cell-size:after { content: "1.7em"; } #media-query:after { content: "596"; } 
 			}
 			@media only screen and (min-width: 626px) and (min-height: 626px) {	
-				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .row { height: 1.8em; } 
+				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .space { height: 1.8em; } 
 				.space { width: 1.8em; } #tools { height: 28.4em; } #bench { width: 31.1em; }	
 				#media-query-cell-size:after { content: "1.8em"; } #media-query:after { content: "626"; } 
 			}
 			@media only screen and (min-width: 656px) and (min-height: 656px) {	
-				#game { width: 32.8em; height: 32.8em; margin: -16.4em 0 0 -16.4em; } #board { width: 29.9em; height: 29.9em; } .row { height: 1.9em; } 
+				#game { width: 32.8em; height: 32.8em; margin: -16.4em 0 0 -16.4em; } #board { width: 29.9em; height: 29.9em; } .space { height: 1.9em; } 
 				.space { width: 1.9em; } #tools { height: 29.9em; } #bench { width: 32.6em; }	
 				#media-query-cell-size:after { content: "1.9em"; } #media-query:after { content: "656"; } 
 			}
 			@media only screen and (min-width: 686px) and (min-height: 686px) {	
-				#game { width: 34.3em; height: 34.3em; margin: -17.15em 0 0 -17.15em; } #board { width: 31.4em; height: 31.4em; } .row { height: 2em; } 
+				#game { width: 34.3em; height: 34.3em; margin: -17.15em 0 0 -17.15em; } #board { width: 31.4em; height: 31.4em; } .space { height: 2em; } 
 				.space { width: 2em; } #tools { height: 31.4em; } #bench { width: 34.1em; }
 				#media-query-cell-size:after { content: "2em"; } #media-query:after { content: "686"; } 
 			}
 		
 		/* Major. Reset the cell size and double the overall size */
 		@media only screen and (min-width: 714px) and (min-height: 714px) { 
-			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .row { height: 1.3em; } 
+			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .space { height: 1.3em; } 
 			.space { width: 1.3em; } #tools { height: 20.9em; } #bench { width: 23.6em; } 
 			#game { font-size: 300%; } #media-query-cell-size:after { content: "1.3em"; } #media-query:after { content: "714"; } 
 		}
 		
 			/* Minor. Every 45px add 0.1em to each square making for a total increase of 1.5em (45px @ font-size: 300%) */
 			@media only screen and (min-width: 759px) and (min-height: 759px) {	
-				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .row { height: 1.4em; } 
+				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .space { height: 1.4em; } 
 				.space { width: 1.4em; } #tools { height: 22.4em; } #bench { width: 25.1em; }	
 				#media-query-cell-size:after { content: "1.4em"; } #media-query:after { content: "759"; } 
 			}
 			@media only screen and (min-width: 804px) and (min-height: 804px) {	
-				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .row { height: 1.5em; } 	
+				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .space { height: 1.5em; } 	
 				.space { width: 1.5em; } #tools { height: 23.9em; } #bench { width: 26.6em; }	
 				#media-query-cell-size:after { content: "1.5em"; } #media-query:after { content: "804"; } 
 			}
 			@media only screen and (min-width: 849px) and (min-height: 849px) {	
-				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .row { height: 1.6em; } 
+				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .space { height: 1.6em; } 
 				.space { width: 1.6em; } #tools { height: 25.4em; } #bench { width: 28.1em; }	
 				#media-query-cell-size:after { content: "1.6em"; } #media-query:after { content: "849"; } 
 			}
 			@media only screen and (min-width: 894px) and (min-height: 894px) {	
-				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .row { height: 1.7em; } 	
+				#game { width: 29.8em; height: 29.8em; margin: -14.9em 0 0 -14.9em; } #board { width: 26.9em; height: 26.9em; } .space { height: 1.7em; } 	
 				.space { width: 1.7em; } #tools { height: 26.9em; } #bench { width: 29.6em; }	
 				#media-query-cell-size:after { content: "1.7em"; } #media-query:after { content: "894"; } 
 			}
 			@media only screen and (min-width: 939px) and (min-height: 939px) {	
-				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .row { height: 1.8em; } 	
+				#game { width: 31.3em; height: 31.3em; margin: -15.65em 0 0 -15.65em; } #board { width: 28.4em; height: 28.4em; } .space { height: 1.8em; } 	
 				.space { width: 1.8em; } #tools { height: 28.4em; } #bench { width: 31.1em; }	
 				#media-query-cell-size:after { content: "1.8em"; } #media-query:after { content: "939"; } 
 			}
 		
 		/* Major. Reset the cell size and double the overall size. iPad 1/2 portrait, iPhone 1/2/3/4 portrait */
 		@media only screen and (min-width: 952px) and (min-height: 952px) { 
-			#game { width: 23.8em; height: 23.8em;  margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .row { height: 1.3em; } 
+			#game { width: 23.8em; height: 23.8em;  margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .space { height: 1.3em; } 
 			.space { width: 1.3em; } #tools { height: 20.9em; } #bench { width: 23.6em; } 
 			#game { font-size: 400%; } #media-query-cell-size:after { content: "1.3em"; } #media-query:after { content: "952"; } 
 		}
 		
 			/* Minor. Every 60px add 0.1em to each square making for a total increase of 1.5em (60px @ font-size: 400%) */
 			@media only screen and (min-width: 1012px) and (min-height: 1012px) {	
-				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .row { height: 1.4em; } 	
+				#game { width: 25.3em; height: 25.3em; margin: -12.65em 0 0 -12.65em; } #board { width: 22.4em; height: 22.4em; } .space { height: 1.4em; } 	
 				.space { width: 1.4em; } #tools { height: 22.4em; } #bench { width: 25.1em; }	
 				#media-query-cell-size:after { content: "1.4em"; } #media-query:after { content: "1012"; } 
 			}
 			@media only screen and (min-width: 1072px) and (min-height: 1072px) {	
-				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .row { height: 1.5em; } 	
+				#game { width: 26.8em; height: 26.8em; margin: -13.4em 0 0 -13.4em; } #board { width: 23.9em; height: 23.9em; } .space { height: 1.5em; } 	
 				.space { width: 1.5em; } #tools { height: 23.9em; } #bench { width: 26.6em; }	
 				#media-query-cell-size:after { content: "1.5em"; } #media-query:after { content: "1072"; } 
 			}
 			@media only screen and (min-width: 1132px) and (min-height: 1132px) {	
-				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .row { height: 1.6em; } 	
+				#game { width: 28.3em; height: 28.3em; margin: -14.15em 0 0 -14.15em; } #board { width: 25.4em; height: 25.4em; } .space { height: 1.6em; } 	
 				.space { width: 1.6em; } #tools { height: 25.4em; } #bench { width: 28.1em; }	
 				#media-query-cell-size:after { content: "1.6em"; } #media-query:after { content: "1132"; } 
 			}
 		
 		/* Major. Reset the cell size and double the overall size */
 		@media only screen and (min-width: 1190px) and (min-height: 1190px) { 
-			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .row { height: 1.3em; } 
+			#game { width: 23.8em; height: 23.8em; margin: -11.9em 0 0 -11.9em; } #board { width: 20.9em; height: 20.9em; } .space { height: 1.3em; } 
 			.space { width: 1.3em; } #tools { height: 20.9em; } #bench { width: 23.6em; } 
 			#game { font-size: 500%; } #media-query-cell-size:after { content: "1.3em"; } #media-query:after { content: "1190"; } 
 		}

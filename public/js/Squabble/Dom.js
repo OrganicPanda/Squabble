@@ -32,6 +32,7 @@ Squabble.Dom.bind = function(element, event, handler, context) {
 }
 
 // Get the { top : x, left : y ] of the given element relative to the document 
+// Thanks to Ilya Kantor http://javascript.info/tutorial/coordinates
 Squabble.Dom.getOffsetRect = function(elem) {
 	
 	// Get the bounding box. This is most of the way there already
