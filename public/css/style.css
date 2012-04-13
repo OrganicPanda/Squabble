@@ -121,8 +121,27 @@
 				-moz-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);  
 				-webkit-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
 				box-shadow: 0 0.15em 0 hsl(60, 100%, 35%);
+				-moz-transition-property: all;  
+				-moz-transition-duration: 1s;  
+				-webkit-transition-property: all;  
+				-webkit-transition-duration: 1s;  
+				-o-transition-property: all;  
+				-o-transition-duration: 1s;
+				-ms-transition-property: all;  
+				-ms-transition-duration: 1s;
+				transition-property: all;  
+				transition-duration: 1s;  
 			}
-			.tile-moving {}
+			.space-floating .tile {
+			    -moz-transform: scale(1.5, 1.5);
+			    -webkit-transform: scale(1.5, 1.5);
+			    -o-transform: scale(1.5, 1.5);
+			    -ms-transform: scale(1.5, 1.5);
+			    transform: scale(1.5, 1.5);
+				-moz-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%), 0 0.30em 0 hsla(0, 0%, 0%, 0.5);  
+				-webkit-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%), 0 0.30em 0 hsla(0, 0%, 0%, 0.5);
+				box-shadow: 0 0.15em 0 hsl(60, 100%, 35%), 0 0.30em 0 hsla(0, 0%, 0%, 0.5);
+			}
 	
 	/* Use media queries to scale up the UI when the environment allows */	
 		
