@@ -12,23 +12,34 @@ Squabble.Screen.Board.Space = function(game, element) {
 	// Apply our DOM element
 	this.element = element;
 	
+	// Get starting position
+	this.bounds = { top: 0, right: 0, bottom: 0, left: 0 };
+	this.updateBounds();
+	
 	// Start with no tile
 	this.tile = null;
 	
 };
 
+// Record our current bounding box
+Squabble.Screen.Board.Space.prototype.updateBounds = function() {
+
+	this.bounds = this.game.dom.getOffsetRect(this.element);
+
+}
+
 // Init the drop events for this space
-Squabble.Screen.Board.Space.prototype.initDrop = function() {
+/*Squabble.Screen.Board.Space.prototype.initDrop = function() {
 
 	this.game.dom.bind(this.element, 'dragenter', this.handleDragEnter, this);
 	this.game.dom.bind(this.element, 'dragover', this.handleDragOver, this);
 	this.game.dom.bind(this.element, 'dragleave', this.handleDragLeave, this);
 	this.game.dom.bind(this.element, 'drop', this.handleDrop, this);
 
-}
+}*/
 
 // This handles any drag is over our element
-Squabble.Screen.Board.Space.prototype.handleDragOver = function(e) {
+/*Squabble.Screen.Board.Space.prototype.handleDragOver = function(e) {
 	
 	console.log('drag over: ', this, e.target);
 
@@ -38,26 +49,26 @@ Squabble.Screen.Board.Space.prototype.handleDragOver = function(e) {
 
 	e.dataTransfer.dropEffect = 'move';
 	return false;
-};
+};*/
 
 // This handles a drag that has moved over our element
-Squabble.Screen.Board.Space.prototype.handleDragEnter = function(e) {
+/*Squabble.Screen.Board.Space.prototype.handleDragEnter = function(e) {
 	
 	// Add a class to show we're being hovered
 	this.game.dom.addClass(this.element, 'space-hovered');
 	
-};
+};*/
 
 // This handles a drag that leaves our element
-Squabble.Screen.Board.Space.prototype.handleDragLeave = function(e) {
+/*Squabble.Screen.Board.Space.prototype.handleDragLeave = function(e) {
 	
 	// Remove the hover class
 	this.game.dom.removeClass(this.element, 'space-hovered');
 	
-};
+};*/
 
 // Handle a drop that happens over our element
-Squabble.Screen.Board.Space.prototype.handleDrop = function(e) {
+/*Squabble.Screen.Board.Space.prototype.handleDrop = function(e) {
 	// this/e.target is current target element.
 
 	console.log('drop: ', e.target);
@@ -76,7 +87,7 @@ Squabble.Screen.Board.Space.prototype.handleDrop = function(e) {
 	//}
 
 	return false;
-};
+};*/
 
 // Do we have a tile?
 Squabble.Screen.Board.Space.prototype.hasTile = function() {

@@ -14,6 +14,7 @@ Squabble.Screen.Board.Board = function(game) {
 	this.rowcount = null;
 	this.columncount = null;
 	this.initSpaces();
+	this.initSpacesDrop();
 	
 	// Initialise our tiles
 	this.benchtiles = [];
@@ -57,13 +58,31 @@ Squabble.Screen.Board.Board.prototype.initSpaces = function() {
 		
 			// Create the space and make sure it's listening for drop events
 			var space = new Squabble.Screen.Board.Space(this.game, domspaces[c]);
-			space.initDrop();
+			//space.initDrop();
 			spaces.push(space);
 		
 		}
 		
 		// Add this row to our main array
 		this.spaces.push(spaces);
+	
+	}
+
+}
+
+// Get the spaces ready to accept a tile drop
+Squabble.Screen.Board.Board.prototype.initSpacesDrop = function() {
+	
+	// Loop the rows
+	for (var r = 0, rl = this.spaces.length; r < rl; r++) {
+	
+		// Loop the spaces
+		for (var c = 0, cl = this.spaces[r].length; c < cl; c++) {
+			
+			// Record the current position of this space so we can bounds-check later
+			this.spaces[r][c].updateBounds();		
+		
+		}
 	
 	}
 
@@ -91,17 +110,20 @@ Squabble.Screen.Board.Board.prototype.initTiles = function() {
 
 }
 
+
 // Get the tiles ready to be dragged
 Squabble.Screen.Board.Board.prototype.initTilesDrag = function() {	
 	
 	// Record the state of dragging
 	var dragging = false;
 	var draggingtile = null;
+	var draggingtileparent = null;
 	var floatingtilecontainer = this.game.selector('#floating-tile', this.element)[0];
 	var floatingtile = null;
 	
 	// Return the correct position for the floating tile
 	// Based on mouse position x, y
+	// TODO: Could probably just do this once and use it for all events
 	var hackthis = this;
 	var getIdealFloatPosition = function(x, y) {
 		
@@ -121,13 +143,13 @@ Squabble.Screen.Board.Board.prototype.initTilesDrag = function() {
 	for (var t = 0, tl = this.benchtiles.length; t < tl; t++) {
 		
 		// Listen for dragging
-		//var hackydom = this.game.dom;
-		//var hackyelem = this.element;
+		var hackthis = this;
 		this.game.dom.bind(this.benchtiles[t].element, 'mousedown', function(e) { 
 
 			// If the mouse is down on this tile then assume we're dragging
 			dragging = true;
 			draggingtile = this;
+			draggingtileparent = this.parentNode;
 			
 			// Put the tile in the floating container that will follow the mouse
 			floatingtilecontainer.appendChild(draggingtile);
@@ -137,17 +159,44 @@ Squabble.Screen.Board.Board.prototype.initTilesDrag = function() {
 			var pos = getIdealFloatPosition(e.pageX, e.pageY);
 			floatingtilecontainer.style.left = pos.left + 'px';
 			floatingtilecontainer.style.top = pos.top + 'px';
+			
+			// Now get the spaces ready for dropping
+			// TODO: This could be done once at board open then on 
+			// browser resize for better performance
+			hackthis.initSpacesDrop();
 		
 		}, this.benchtiles[t].element);
 		
 	}
 	
 	// Any time the mouse is up the dragging has stopped
-	this.game.dom.bind(document, 'mouseup', function() { 
+	this.game.dom.bind(document, 'mouseup', function(e) { 
 	
-		// Reset the dragging state
-		dragging = false; 
-		draggingtile = null;
+		// Are we currently dragging?
+		if (dragging && draggingtile && draggingtileparent) { 
+			
+			// See if we're above any spaces
+			var space = this.findSpaceByDocumentOffset(e.pageX, e.pageY);
+			if (space) {
+			
+				// Above a space so drop on to it
+				space.tile = draggingtile;
+				space.element.appendChild(draggingtile);
+			
+			} else {
+				
+				// No space found so return to base
+				draggingtileparent.appendChild(draggingtile);
+				
+			}
+			
+			// Reset the dragging state
+			floatingtilecontainer.style.display = 'none';
+			dragging = false; 
+			draggingtile = null;
+			draggingtileparent = null;
+			
+		}
 	
 	}, this);
 	
@@ -167,6 +216,34 @@ Squabble.Screen.Board.Board.prototype.initTilesDrag = function() {
 	}, this);
 
 }
+
+// Find a space based on an x, y document offset, return the space or null
+Squabble.Screen.Board.Board.prototype.findSpaceByDocumentOffset = function(x, y) {
+
+	// Loop the rows
+	for (var r = 0, rl = this.spaces.length; r < rl; r++) {
+	
+		// Loop the spaces
+		for (var c = 0, cl = this.spaces[r].length; c < cl; c++) {
+			
+			// Get this spaces bounds
+			var bounds = this.spaces[r][c].bounds;
+			
+			// Check the coordinates are inside
+			// TODO: We could eliminate further row / column checks if x < bounds.left or y < bounds.top and save cycles here 
+			if (x > bounds.left && x < bounds.right && y > bounds.top && y < bounds.bottom) {
+				
+				// The coordinates are inside this space so return it 
+				return this.spaces[r][c]; 
+				
+			}
+		
+		}
+	
+	}
+
+}
+
 
 // Clear the board, ready to start
 Squabble.Screen.Board.Board.prototype.fillBoard = function() {

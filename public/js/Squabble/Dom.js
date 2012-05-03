@@ -31,7 +31,7 @@ Squabble.Dom.bind = function(element, event, handler, context) {
 	return element;
 }
 
-// Get the { top : x, left : y ] of the given element relative to the document 
+// Get the { top : x, left : y, bottom : x2, right : y2 } of the given element relative to the document 
 // Thanks to Ilya Kantor http://javascript.info/tutorial/coordinates
 Squabble.Dom.getOffsetRect = function(elem) {
 	
@@ -51,10 +51,11 @@ Squabble.Dom.getOffsetRect = function(elem) {
 	var clientLeft = docElem.clientLeft || body.clientLeft || 0;
     
 	// Smush that all together and we get our totals
-	return {
-		top : Math.round(box.top +  scrollTop - clientTop),
-		left : Math.round(box.left + scrollLeft - clientLeft)
-	}
+	var top = Math.round(box.top +  scrollTop - clientTop);
+	var left = Math.round(box.left + scrollLeft - clientLeft);
+	var bottom = Math.round(top + (box.bottom - box.top));
+	var right = Math.round(left + (box.right - box.left));
+	return { top : top, left : left, bottom : bottom, right: right }
 	
 }
 
