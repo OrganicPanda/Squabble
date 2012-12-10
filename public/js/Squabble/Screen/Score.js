@@ -6,7 +6,8 @@ Squabble.Screen = Squabble.Screen || {};
 Squabble.Screen.Score = function(game) {
 	
 	// Construct super
-	Squabble.Screen.Base.apply(this, arguments);	
+	this.super = Squabble.Screen.Base;
+	this.super.apply(this, arguments);	
 	
 	// Wire up the buttons
 	this.game.dom.bind(this.game.selector("#score-go-menu", this.element)[0], "click", function() {

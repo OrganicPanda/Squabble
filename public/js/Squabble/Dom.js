@@ -11,7 +11,7 @@ Squabble.Dom.hasClass = function(el, clsName) {
 } 
 
 // Add classname to element
-Squabble.Dom.addClass = function(el, clsName) { 
+Squabble.Dom.addClass = function(el, clsName) {
 	if (!this.hasClass(el, clsName)) { el.className += " " + clsName; } 
 	return el;
 } 

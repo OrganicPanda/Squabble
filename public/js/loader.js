@@ -13,8 +13,10 @@ window.addEventListener("load", function() {
 			"js/Squabble/Screen/Menu.js",
 			"js/Squabble/Screen/Score.js",
 			"js/Squabble/Screen/Board/Board.js",
+			"js/Squabble/Screen/Board/Player.js",
 			"js/Squabble/Screen/Board/Space.js",
 			"js/Squabble/Screen/Board/Tile.js",
+			"js/Squabble/Screen/Board/TileBag.js",
 			"js/Squabble/Input.js",
 			"js/Squabble/Game.js"
 		], 

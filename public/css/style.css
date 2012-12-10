@@ -86,7 +86,8 @@
 			#bench { bottom: 0.1em; left: 0.1em; width: 23.6em; height: 2.6em; background-color: red; }
 			#tools { top: 0.1em; right: 0.1em; width: 2.6em; height: 20.9em; background-color: red; }
 			#board { top: 0.1em; left: 0.1em; width: 20.9em; height: 20.9em; background-color: red; }
-			#floating-tile { display: none; }		
+			#floating-tile { display: none; }
+			#tilebag { display: none; }
 		
 			/* Clearfix the rows */
 			.row:before, .row:after { content: ""; display: table; }
@@ -143,6 +144,10 @@
 				-webkit-box-shadow: 0 0.15em 0 hsl(60, 100%, 35%), 0 0.30em 0 hsla(0, 0%, 0%, 0.5);
 				box-shadow: 0 0.15em 0 hsl(60, 100%, 35%), 0 0.30em 0 hsla(0, 0%, 0%, 0.5);
 			}
+
+			/* Hide all but the active player's tiles */
+			.player-tiles { display: none; }
+			.active-player-tiles { display: block; }
 	
 	/* Use media queries to scale up the UI when the environment allows */	
 		

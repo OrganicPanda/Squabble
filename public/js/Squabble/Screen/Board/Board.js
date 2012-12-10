@@ -7,19 +7,28 @@ Squabble.Screen.Board = Squabble.Screen.Board || {};
 Squabble.Screen.Board.Board = function(game) { 
 	
 	// Construct super
-	Squabble.Screen.Base.apply(this, arguments);
+	this.super = Squabble.Screen.Base;
+	this.super.apply(this, arguments);
 	
+	// Store the list of players and the current player
+	this.players = [];
+	this.player = null;
+
 	// Build up our board spaces
 	this.spaces = [];
 	this.rowcount = null;
 	this.columncount = null;
-	this.initSpaces();
-	this.initSpacesDrop();
+	//this.initSpaces();
+	//this.initSpacesDrop();
 	
 	// Initialise our tiles
-	this.benchtiles = [];
-	this.initTiles();
-	this.initTilesDrag();
+	this.tilebag = null;
+
+	// Get hold of the tile bench
+	this.bench = this.game.selector('#bench', this.element)[0];
+
+	//this.initTiles();
+	//this.initTilesDrag();
 	
 	// Wire up the buttons
 	this.game.dom.bind(this.game.selector("#board-go-menu", this.element)[0], "click", function() {
@@ -33,6 +42,64 @@ Squabble.Screen.Board.Board = function(game) {
 
 // Extend the Base screen
 Squabble.Screen.Board.Board.prototype = new Squabble.Screen.Base;
+
+// Show this screen
+Squabble.Screen.Board.Board.prototype.open = function() {
+	
+	// Call super
+	this.super.prototype.open.apply(this, arguments);
+
+	// Start a new game
+	this.start(2);
+	
+};
+
+// Start a new game
+Squabble.Screen.Board.Board.prototype.start = function(players) {
+
+	// Create the tile bag
+	this.tilebag = new Squabble.Screen.Board.TileBag(this.game, this.game.selector('#tilebag', this.element)[0]);
+
+	// Create some players
+	for (var i = 0; i < players; i++) {
+
+		this.players.push(new Squabble.Screen.Board.Player(
+			this.game, 
+			i + 1,
+			this.tilebag.popTiles(7),
+			this.bench
+		));
+
+	}
+
+	// Start with the first player
+	this.setActivePlayer(this.players[0]);
+
+	console.log(
+		'game started', {
+			'this' : this,  
+			'players' : this.players, 
+			'tilebag' : this.tilebag
+		}
+	);
+
+}
+
+// Change from the current player to the given player
+Squabble.Screen.Board.Board.prototype.setActivePlayer = function(newPlayer) {
+
+	// Set the current player as inactive, if there is one
+	if (this.player) {
+		this.player.setActive(false);
+	}
+
+	// Change player
+	this.player = newPlayer;
+
+	// Set them as active
+	this.player.setActive(true);
+
+}
 
 // Find our spaces and build a 3d array to represent them
 Squabble.Screen.Board.Board.prototype.initSpaces = function() {
